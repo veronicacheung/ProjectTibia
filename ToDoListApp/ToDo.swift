@@ -11,4 +11,6 @@ import UIKit
 class ToDo{
     var name = ""
     var important = false
+    var doDate = Date()
+    var dueDate = Date() 
 }

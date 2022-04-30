@@ -15,9 +15,20 @@ class AddToDoViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var importantSwitch: UISwitch!
+    @IBOutlet weak var datePicker1: UIDatePicker!
+    @IBOutlet weak var datePicker2: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let _: ClosedRange<Date> = {
+            let calendar = Calendar.current
+            let startComponents = DateComponents(year: 2022, month: 1, day: 1)
+            let endComponents = DateComponents(year: 2023, month: 12, day: 31, hour: 23, minute: 59, second: 59)
+            return calendar.date(from:startComponents)!
+                ...
+                calendar.date(from:endComponents)!
+        }()
 
         // Do any additional setup after loading the view.
     }
@@ -35,6 +46,8 @@ class AddToDoViewController: UIViewController {
               // this .name and .important came from the attributes you typed in on the Core Data page!
               toDo.name = titleText
               toDo.important = importantSwitch.isOn
+              toDo.dueDate = datePicker2.date
+              toDo.doDate = datePicker1.date
           }
 
           try? context.save()

@@ -14,11 +14,25 @@ class CompleteToDoViewController: UIViewController {
     var selectedToDo : ToDoCD?
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var doDateLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         titleLabel.text = selectedToDo?.name
+        
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        
+        let strDate1 = dateFormatter.string(from: (selectedToDo?.doDate)!)
+        doDateLabel.text = strDate1
+        
+        let strDate2 = dateFormatter.string(from: (selectedToDo?.dueDate)!)
+        dueDateLabel.text = strDate2 
     }
     
     @IBAction func completeTapped(_ sender: Any) {
